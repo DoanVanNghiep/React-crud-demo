@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EmployeeService from '../service/EmployeeService'
+import { NavLink, useNavigation } from 'react-router-dom';
 
 class ListEmployeeComponent extends Component {
     constructor(props) {
@@ -8,23 +9,26 @@ class ListEmployeeComponent extends Component {
         this.state = {
             employees: []
         }
-        this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this);
         this.deleteEmployee = this.deleteEmployee.bind(this);
     }
-    deleteEmployee(empNo) {
-        EmployeeService.deleteEmployee(empNo).then(res => {
-            this.setState({ employees: this.state.employees.filter(employee => employee.empNo !== empNo) });
-        }).catch(error => {
-            console.error("There was an error deleting the employee!", error);
-            alert("Error deleting employee: " + error.message);
+
+
+    deleteEmployee(id) {
+        console.log("id: ", id);
+        this.state.employees.filter(employee => {
+            console.log("employee.id !== id: ", employee.id !== id)
+            return employee.id !== id;
+        })
+        EmployeeService.deleteEmployee(id).then(res => {
+            this.setState({ employees: this.state.employees.filter(employee => employee.id !== id) });
         });
     }
     viewEmployee(id) {
-        this.props.history.push(`/view-employee/${id}`);
+        window.location.href = `/view-employee/${id}`;
     }
     editEmployee(id) {
-        this.props.history.push(`/add-employee/${id}`);
+        window.location.href = `/add-employee/${id}`;
     }
 
     componentDidMount() {
@@ -33,16 +37,12 @@ class ListEmployeeComponent extends Component {
         });
     }
 
-    addEmployee() {
-        this.props.history.push('/add-employee/_add');
-    }
-
     render() {
         return (
             <div>
                 <h2 className="text-center">Employees List</h2>
                 <div className="row">
-                    <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee</button>
+                    <NavLink to={'/add-employee/_add'} className="btn btn-primary"> Add Employee</NavLink>
                 </div>
                 <br></br>
                 <div className="row">
@@ -65,11 +65,11 @@ class ListEmployeeComponent extends Component {
                                             <td> {employee.empName} </td>
                                             <td> {employee.position}</td>
                                             <td>
-                                                <button onClick={() => this.editEmployee(employee.id)} className="btn btn-info">Update </button>
+                                                <NavLink to={'/add-employee/_add'} className="btn btn-info">Update</NavLink>
                                                 <button style={{ marginLeft: "10px" }} onClick={() => this.deleteEmployee(employee.empNo)} className="btn btn-danger">Delete </button>
-                                                <button style={{ marginLeft: "10px" }} onClick={() => this.viewEmployee(employee.id)} className="btn btn-info">View </button>
+                                                <button style={{ marginLeft: "10px" }} onClick={() => this.viewEmployee(employee.empNo)} className="btn btn-info">View </button>
                                             </td>
-                                        </tr>
+                                            </tr>
                                 )
                             }
                         </tbody>

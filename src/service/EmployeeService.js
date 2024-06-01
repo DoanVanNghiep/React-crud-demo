@@ -21,7 +21,7 @@ class EmployeeService {
     }
 
     deleteEmployee(employeeId) {
-        return axios.delete('${REACT_APP_BACKEND_URL}/${empNo}');
+        return axios.delete(REACT_APP_BACKEND_URL + '/' + employeeId);
     }
 }
 
