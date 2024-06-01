@@ -7,7 +7,7 @@ const RouteApp = () => {
   let routes = useRoutes([
     { path: "/", element: <ListEmployeeComponent /> },
     { path: "/employee", element: <ListEmployeeComponent /> },
-    { path: "//add-employee/_add", element: < CreateEmployeeComponent/>},
+    { path: "/add-employee/_add", element: < CreateEmployeeComponent/>},
     { path: "/view-employee/:id", element: <ViewEmployeeComponent /> },
   ]);
   return routes;
