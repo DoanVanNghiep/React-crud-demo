@@ -2,13 +2,14 @@
 
 import React, { Component } from 'react'
 import EmployeeService from '../service/EmployeeService'
+import withHook from '../components/withHook';
 
 class ViewEmployeeComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
+            id: this.props.params.id,
             employee: {}
         }
     }
@@ -48,5 +49,5 @@ class ViewEmployeeComponent extends Component {
     }
 }
 
-export default ViewEmployeeComponent
+export default withHook(ViewEmployeeComponent);
 

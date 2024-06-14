@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EmployeeService from '../service/EmployeeService'
 import { NavLink, useNavigation } from 'react-router-dom';
+import withHook from '../components/withHook';
 
 class ListEmployeeComponent extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class ListEmployeeComponent extends Component {
         });
     }
     viewEmployee(id) {
-        window.location.href = `/view-employee/${id}`;
+        this.props.navigation(`/view-employee/${id}`);
     }
     editEmployee(id) {
         window.location.href = `/add-employee/${id}`;
@@ -82,4 +83,4 @@ class ListEmployeeComponent extends Component {
     }
 }
 
-export default ListEmployeeComponent    
+export default withHook(ListEmployeeComponent); 
