@@ -17,7 +17,7 @@ class EmployeeService {
     }
 
     updateEmployee(employee, employeeId) {
-        return axios.put(REACT_APP_BACKEND_URL + '/' + employeeId, employee);
+        return axios.put(REACT_APP_BACKEND_URL ,employee);
     }
 
     deleteEmployee(employeeId) {
