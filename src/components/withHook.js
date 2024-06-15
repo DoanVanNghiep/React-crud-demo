@@ -5,7 +5,7 @@ const withHook = (Component) => {
     return (props) => {
         const navigation = useNavigate();
         const params = useParams();
-        return < Component navigation={navigation} params={params} {...props} />
+        return <Component navigation={navigation} params={params} {...props} />
     }
 }
 
