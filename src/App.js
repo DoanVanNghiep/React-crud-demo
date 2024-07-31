@@ -7,22 +7,22 @@ import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
-import LoginEmployeeComponent from './components/LoginEmployeeComponent';
+import LoginPage from './components/LoginPage';
+import CartComponent from './components/CartComponent';
 
 function App() {
     return (
-        <div>
-            
+        <div> 
             <Router>
             <HeaderComponent />
                 <div className="container">
                     <Routes>
-                        <Route path="/" element={<ListEmployeeComponent />} />
+                        <Route path="/" element={<LoginPage />} />
                         <Route path="/employee" element={<ListEmployeeComponent />} />
                         <Route path="/add-employee/:id" element={<CreateEmployeeComponent />} />
                         <Route path="/update-employee/:id" element={<UpdateEmployeeComponent />} />
                         <Route path="/view-employee/:id" element={<ViewEmployeeComponent />} />
-                        <Route path="/login" element={<LoginEmployeeComponent />} />
+                        <Route path="/cart" element={<CartComponent />} />
                     </Routes>
                 </div>
             </Router>

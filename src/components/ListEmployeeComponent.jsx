@@ -1,6 +1,8 @@
+// ListEmployeeComponent.js
 import React, { Component } from 'react';
 import EmployeeService from '../services/EmployeeService';
 import withHook from '../components/withHook';
+import AuthService from '../services/AuthService';
 
 class ListEmployeeComponent extends Component {
     constructor(props) {
@@ -15,6 +17,10 @@ class ListEmployeeComponent extends Component {
     }
 
     componentDidMount() {
+        this.loadEmployees();
+    }
+
+    loadEmployees() {
         EmployeeService.getEmployees().then((res) => {
             this.setState({ employees: res.data });
         });
@@ -51,6 +57,7 @@ class ListEmployeeComponent extends Component {
                         <thead>
                             <tr>
                                 <th>Employee ID</th>
+                                <th>Image</th>
                                 <th>Employee Name</th>
                                 <th>Position</th>
                                 <th>Actions</th>
@@ -60,6 +67,7 @@ class ListEmployeeComponent extends Component {
                             {this.state.employees.map(employee =>
                                 <tr key={employee.empNo}>
                                     <td>{employee.empNo}</td>
+                                    <td><img alt="" src={employee.image} style={{ width: '50px', height: '50px' }} /></td>
                                     <td>{employee.empName}</td>
                                     <td>{employee.position}</td>
                                     <td>

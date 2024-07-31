@@ -35,15 +35,10 @@ class HeaderComponent extends Component {
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                         <div className="container-fluid">
-                            <a href="https://javaguides.net" className="navbar-brand">Employee Management App</a>
-                            <div className="ml-auto">
-                                {!loggedIn ? (
-                                    <button onClick={this.handleLogin} className="btn btn-info">Login</button>
-                                ) : (
-                                    <button onClick={this.handleLogout} className="btn btn-info">Logout</button>
-                                )}
-                            </div>
+                            <a href="/employee" className="navbar-brand">Employee Management App</a>
+                            <a href="/cart" className="navbar-brand">cart</a>
                         </div>
+                        
                     </nav>
                 </header>
             </div>

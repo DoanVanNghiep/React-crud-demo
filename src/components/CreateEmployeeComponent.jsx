@@ -11,6 +11,8 @@ class CreateEmployeeComponent extends Component {
             empNo: '',
             empName: '',
             position: '',
+            image: '',
+            
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
@@ -29,14 +31,15 @@ class CreateEmployeeComponent extends Component {
                 this.setState({
                     empNo: employee.empNo,
                     empName: employee.empName,
-                    position: employee.position
+                    position: employee.position,
+                    image: employee.image 
                 });
             });
         }
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = { empNo: this.state.empNo, empName: this.state.empName, position: this.state.position };
+        let employee = { empNo: this.state.empNo, empName: this.state.empName, position: this.state.position, image: this.state.image };
         console.log('employee => ' + JSON.stringify(employee));
 
 
@@ -64,6 +67,9 @@ class CreateEmployeeComponent extends Component {
     changeEmailHandler = (event) => {
         this.setState({ position: event.target.value });
     }
+    handleFileChange = (event) => {
+        this.setState({ image: event.target.value });
+    };
 
     cancel(e) {
         e.preventDefault()
@@ -103,6 +109,14 @@ class CreateEmployeeComponent extends Component {
                                         <input placeholder="Employee Position" name="position" className="form-control"
                                             value={this.state.position} onChange={this.changeEmailHandler} />
                                     </div>
+                                    <div className="form-group">
+                                        <label> Image Employee: </label>
+                                        <br/>
+                                        <img id="bookImage" width="150"/> &nbsp; <input
+                                        type="file" name="file" accept="image/*" value={this.state.image}
+                                        onchange={this.handleFileChange} />
+                                    </div>
+
 
                                     <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancel</button>
